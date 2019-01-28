@@ -1,0 +1,63 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+apply from: "../jacoco/androidJacoco.gradle"
+
+android {
+  compileSdkVersion 28
+  defaultConfig {
+    minSdkVersion 16
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+    debug {
+      testCoverageEnabled true
+    }
+  }
+  sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
+    test.java.srcDirs += 'src/test/kotlin'
+    androidTest.java.srcDirs += 'src/androidTest/kotlin'
+  }
+  lintOptions {
+    disable 'InvalidPackage'
+  }
+}
+
+dependencies {
+  api project(':domain')
+
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+  implementation "com.android.support:appcompat-v7:$androidSupport"
+
+  compileOnly libraries.javax_annotation
+  implementation libraries.javax_inject
+
+  implementation libraries.rxJava
+
+  implementation libraries.retrofit2
+  implementation libraries.retrofit2_converter_gson
+  implementation libraries.retrofit2_rxJava_adapter
+  implementation libraries.mockwebserver
+
+
+  //    implementation 'com.google.firebase:firebase-firestore:17.0.4'
+
+  testImplementation libraries.junit
+
+  androidTestImplementation libraries.test_runner
+  androidTestImplementation libraries.espresso_core
+}
+repositories {
+  mavenCentral()
+}

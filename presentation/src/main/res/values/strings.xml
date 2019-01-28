@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">design builder</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="view_pager_indicator_text">%1d / %2d</string>
+  <string name="sorry_no_words_found">Sorry, no words found</string>
+</resources>

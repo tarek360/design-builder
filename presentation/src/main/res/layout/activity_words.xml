@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".ui.words.WordsActivity"
+    >
+
+  <!-- Loading View -->
+  <ProgressBar
+      android:id="@+id/loadingView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center" />
+
+  <TextView
+      android:id="@+id/errorTextView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center" />
+
+  <co.designbuilder.presentation.ui.view.CustomViewSlider
+      android:id="@+id/customViewSlider"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
+
+</FrameLayout>

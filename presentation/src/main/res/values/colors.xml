@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#fff</color>
+    <color name="primary">#0283df</color>
+    <color name="primaryDark">#0269b2</color>
+    <color name="primaryLight">#9cc3df</color>
+    <color name="accent">#f79d11</color>
+    <color name="disabledGrey">#555</color>
+    <color name="defaultText">#333</color>
+    <color name="grey">#A7A7A7</color>
+
+    <color name="card_bg">#ffffff</color>
+    <color name="main_text">#232323</color>
+    <color name="note_text">#a3a3a3</color>
+    <color name="current_position_text">#b7b7b7</color>
+
+</resources>

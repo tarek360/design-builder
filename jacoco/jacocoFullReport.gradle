@@ -1,0 +1,45 @@
+apply plugin: 'jacoco'
+
+jacoco {
+  toolVersion = "$jacocoVersion"
+}
+
+task jacocoFullReport(type: JacocoReport) {
+  group = 'Reporting'
+  description = 'generate one jacoco report for all modules'
+
+  final Set<Task> myJacocoTasks = new HashSet<>()
+  myJacocoTasks.add(subprojects.find { it.name == 'presentation' }.getTasksByName("jacocoTestReport", false))
+  myJacocoTasks.add(subprojects.find { it.name == 'data' }.getTasksByName("jacocoTestReport", false))
+  myJacocoTasks.add(subprojects.find { it.name == 'domain' }.getTasksByName("jacocoTestReport", false))
+  dependsOn myJacocoTasks
+
+  executionData = project.files(myJacocoTasks*.executionData)
+  classDirectories = project.files(myJacocoTasks*.classDirectories)
+  sourceDirectories = project.files(myJacocoTasks*.sourceDirectories)
+
+  def reportsDir = "${project.buildDir}/reports/jacoco"
+
+//  if (project.hasProperty('args')) {
+//    def values = args.split(',')
+//    if (values[0] == "ci") {
+//      def buildNumber = values[1]
+//      reportsDir = "${project.rootDir}/reports/jacoco/$buildNumber"
+//    }
+//  }
+
+  reports {
+    xml {
+      enabled = true
+      destination file("${reportsDir}/jacoco.xml")
+    }
+    html {
+      enabled = true
+      destination file("${reportsDir}/html")
+    }
+  }
+
+  doFirst {
+    executionData = project.files(executionData.findAll { it.exists() })
+  }
+}
